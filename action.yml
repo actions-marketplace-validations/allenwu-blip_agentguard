@@ -1,5 +1,5 @@
 name: "agentguard — unguarded agent tool-call lint"
-description: "Static AST lint for MISSING guards on AI-agent tool calls: flags unguarded shell/exec, sensitive filesystem, outbound network and dynamic-eval sinks reachable from an agent tool handler. Conservative (low false positives). Fails OPEN on internal error (never breaks your pipeline)."
+description: "Static AST lint for missing guards on AI-agent tool calls: unguarded shell, file, network and eval sinks."
 author: "agentguard"
 branding:
   icon: "shield"
