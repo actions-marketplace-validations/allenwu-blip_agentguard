@@ -1,0 +1,10 @@
+{
+  "_comment": "Optional. agentguard works with zero config. Copy to your repo root as .agentguardrc.json (or pass --config). Prefer fixing or `allow`-listing a reviewed finding over broad `ignore` — low false positives is the point.",
+  "severities": {
+    "AG003": "medium"
+  },
+  "ignore": [
+    "examples/**"
+  ],
+  "allow": []
+}

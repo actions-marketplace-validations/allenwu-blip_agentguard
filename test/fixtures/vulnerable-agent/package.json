@@ -1,0 +1,6 @@
+{
+  "name": "vulnerable-agent-fixture",
+  "private": true,
+  "type": "module",
+  "description": "FIXTURE ONLY — deliberately unguarded AI-agent tool handlers. Each file triggers exactly one agentguard rule. Never wire this into a real agent."
+}

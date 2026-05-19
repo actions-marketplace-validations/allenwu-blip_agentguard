@@ -1,0 +1,6 @@
+{
+  "name": "clean-agent-fixture",
+  "private": true,
+  "type": "module",
+  "description": "FIXTURE — properly guarded AI-agent tool handlers. agentguard must report ZERO findings here."
+}

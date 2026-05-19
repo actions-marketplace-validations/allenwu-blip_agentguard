@@ -1,0 +1,48 @@
+name: "agentguard misfire report"
+description: "Report a false positive (guarded/safe code flagged) or a false negative (a real unguarded agent tool-call sink agentguard missed). Captured verbatim and read exactly as written."
+title: "[misfire] "
+labels: ["agentguard-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Misfire reports are the single most useful
+        input for tuning a conservative linter — **a confirmed false
+        positive is our highest-priority fix.** Your description is stored
+        and read **exactly as you write it** — it is not summarized or
+        paraphrased. Be as blunt as you like.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Misfire type
+      options:
+        - "False positive — guarded/safe code was flagged (highest priority)"
+        - "False negative — a real unguarded sink was NOT caught"
+        - "Wrong severity / wrong location"
+        - "Other / not sure"
+    validations:
+      required: true
+  - type: dropdown
+    id: rule
+    attributes:
+      label: Rule id (if applicable)
+      options:
+        - "AG001 — unguarded shell/exec"
+        - "AG002 — unguarded sensitive fs write"
+        - "AG003 — unguarded outbound network"
+        - "AG004 — unguarded dynamic eval"
+        - "AG005 — unguarded sensitive fs read"
+        - "N/A — false negative (no rule fired)"
+  - type: textarea
+    id: what_happened
+    attributes:
+      label: What happened, in your own words
+      description: "Verbatim. Paste the finding agentguard printed and a minimal repro snippet (sanitize secrets). For a false positive, show the guard that's actually on the path."
+      placeholder: "AG001 fired on `execSync(cmd)` but `cmd` is checked against ALLOWED_CMDS (a frozen array) two lines above via `.find(...)`, which agentguard didn't recognize as an allowlist..."
+    validations:
+      required: true
+  - type: input
+    id: invocation
+    attributes:
+      label: How you ran it (surface + version + non-default flags)
+      placeholder: "CLI, npx agentguard ./src --fail-on critical, v0.1.0"

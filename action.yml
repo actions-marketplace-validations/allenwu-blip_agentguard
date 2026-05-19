@@ -1,0 +1,59 @@
+name: "agentguard — unguarded agent tool-call lint"
+description: "Static AST lint for MISSING guards on AI-agent tool calls: flags unguarded shell/exec, sensitive filesystem, outbound network and dynamic-eval sinks reachable from an agent tool handler. Conservative (low false positives). Fails OPEN on internal error (never breaks your pipeline)."
+author: "agentguard"
+branding:
+  icon: "shield"
+  color: "purple"
+
+inputs:
+  path:
+    description: "File(s)/dir(s) to scan (space-separated). Defaults to the repo root."
+    required: false
+    default: "."
+  fail-on:
+    description: "Fail the step if any finding is at or above this severity: critical | high | medium | low | none."
+    required: false
+    default: "high"
+  json:
+    description: "If 'true', print machine-readable JSON instead of the human report."
+    required: false
+    default: "false"
+  sarif:
+    description: "If 'true', write a SARIF v2.1.0 file (upload it with github/codeql-action/upload-sarif to populate the Code scanning tab)."
+    required: false
+    default: "false"
+  sarif-file:
+    description: "Path to write the SARIF file when sarif=true."
+    required: false
+    default: "agentguard.sarif"
+  include-tests:
+    description: "If 'true', also scan test/spec/fixture files (off by default)."
+    required: false
+    default: "false"
+  config:
+    description: "Path to a JSON config (severities / ignore / allow). Auto-loads ./.agentguardrc.json if present."
+    required: false
+    default: ""
+
+outputs:
+  total:
+    description: "Total number of findings."
+  critical:
+    description: "Count of critical findings."
+  high:
+    description: "Count of high findings."
+  medium:
+    description: "Count of medium findings."
+  low:
+    description: "Count of low findings."
+  gate:
+    description: "'fail' if the gate tripped, else 'pass'."
+  sarif-file:
+    description: "Path of the written SARIF file (when sarif=true)."
+
+runs:
+  using: "node20"
+  main: "src/action.js"
+
+# No tokens or secrets are required. This Action performs NO network I/O and
+# never executes the scanned project. It only reads and parses the source.

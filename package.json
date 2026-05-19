@@ -1,0 +1,63 @@
+{
+  "name": "agentguard",
+  "version": "0.1.0",
+  "description": "Static AST linter that flags missing guards on AI-agent tool calls — unguarded shell/exec, filesystem, network, and dynamic-eval sinks with no input validation or allowlist. Conservative (low false positives). Ships as a CLI, an ESLint plugin, and a GitHub Action.",
+  "type": "module",
+  "license": "MIT",
+  "private": false,
+  "bin": {
+    "agentguard": "bin/agentguard.js"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./eslint-plugin": "./eslint-plugin/index.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "eslint-plugin",
+    "action.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "node bin/agentguard.js",
+    "dogfood": "node bin/agentguard.js src bin eslint-plugin --fail-on low"
+  },
+  "keywords": [
+    "ai-agents",
+    "agent-safety",
+    "tool-calling",
+    "static-analysis",
+    "ast",
+    "linter",
+    "eslint-plugin",
+    "security",
+    "llm",
+    "guardrails",
+    "cli"
+  ],
+  "peerDependencies": {
+    "eslint": ">=8.40.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@typescript-eslint/typescript-estree": "8.59.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/rule-tester": "8.59.4",
+    "@typescript-eslint/parser": "8.59.4",
+    "eslint": "9.39.4",
+    "typescript": "5.9.3",
+    "vitest": "2.1.9"
+  }
+}

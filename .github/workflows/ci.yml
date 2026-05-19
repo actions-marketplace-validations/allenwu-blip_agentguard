@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      # No API key and NO network are required: the analysis core is pure
+      # and the suite only reads local fixture directories. This is asserted
+      # by the test suite itself (test/*.test.js).
+      - run: npm test
+      # Smoke-test the CLI exactly as a user would invoke it.
+      - run: node bin/agentguard.js test/fixtures/clean-agent --fail-on high
+      - run: node bin/agentguard.js test/fixtures/borderline-agent --fail-on low
+      - name: CLI must flag the vulnerable fixture (expect exit 1)
+        run: |
+          if node bin/agentguard.js test/fixtures/vulnerable-agent --fail-on high; then
+            echo "expected a non-zero exit on the vulnerable fixture"; exit 1
+          fi
+      # Dogfood: agentguard scans its own source — must be 0 findings.
+      - name: Dogfood (self-scan must be clean)
+        run: node bin/agentguard.js src bin eslint-plugin --fail-on low
+
+  action:
+    # agentguard scans its own repo with its own Action (fails open by
+    # design; here it must pass clean on its own source).
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: ./
+        with:
+          path: "src bin eslint-plugin"
+          fail-on: "low"

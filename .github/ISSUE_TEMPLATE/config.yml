@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Misfire feedback (false positive / false negative)
+    url: https://github.com/portfolio-foundry/agent-guard-lint/blob/main/FEEDBACK.md
+    about: "How to report a misfire. The zero-friction path: open an issue and add the `agentguard-feedback` label. Captured verbatim."

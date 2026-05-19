@@ -1,0 +1,6 @@
+{
+  "name": "borderline-agent-fixture",
+  "private": true,
+  "type": "module",
+  "description": "FIXTURE — tricky-but-legitimate patterns a naive/regex linter would false-positive on. agentguard must report ZERO findings here. This is the moat: low false positives IS the product."
+}
