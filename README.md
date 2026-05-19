@@ -12,7 +12,7 @@ agentguard reads your code and points at the dangerous tool actions that have
 guarded, so it doesn't nag you about safe code.
 
 ```bash
-npx agentguard ./src
+npx @allenwu06/agentguard ./src
 ```
 
 It comes three ways so it fits wherever you already work: a **standalone
@@ -127,23 +127,23 @@ Zero-install via `npx`. A local path is scanned fully offline.
 
 ```bash
 # scan your agent's source
-npx agentguard ./src
+npx @allenwu06/agentguard ./src
 
 # multiple paths
-npx agentguard ./src ./packages/agent
+npx @allenwu06/agentguard ./src ./packages/agent
 
 # machine-readable for tooling / CI
-npx agentguard ./src --json
+npx @allenwu06/agentguard ./src --json
 
 # SARIF v2.1.0 (a standard scan-results format GitHub understands) —
 # upload it so findings show in GitHub's code scanning tab
-npx agentguard ./src --sarif > agentguard.sarif
+npx @allenwu06/agentguard ./src --sarif > agentguard.sarif
 
 # stricter gate: any high or critical fails the command
-npx agentguard ./src --fail-on high     # (high is the default)
+npx @allenwu06/agentguard ./src --fail-on high     # (high is the default)
 
 # include test files in the scan (off by default)
-npx agentguard ./src --include-tests
+npx @allenwu06/agentguard ./src --include-tests
 ```
 
 ### Exit codes (so you can wire it into CI)
@@ -173,7 +173,7 @@ behavioral drift between the CLI and the plugin.
 ESLint **flat config** (`eslint.config.js`, ESLint 9+):
 
 ```js
-import agentguard from "agentguard/eslint-plugin";
+import agentguard from "@allenwu06/agentguard/eslint-plugin";
 
 export default [
   // turn the rule on as an error everywhere

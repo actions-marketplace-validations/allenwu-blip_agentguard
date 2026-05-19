@@ -9,14 +9,14 @@ Built & independently reviewed: real Node 20 command-line tool + ESLint plugin +
 3. Replace every `<OWNER>` placeholder in `README.md` and `examples/` with your real GitHub owner handle.
 4. Push the `products/agent-guard-lint/` contents to that repo root; tag a release (`v0` + a SHA-pinned tag); enable **GitHub Marketplace** listing for the Action (`action.yml` is present).
 5. Create label **`agentguard-feedback`** in that repo (the primary channel where real user reports come in, stored word-for-word, for this bet).
-6. Publish to npm for `npx agentguard` and ESLint plugin import support: `npm publish --access public`.
+6. Publish to npm for `npx @allenwu06/agentguard` and ESLint plugin import support: `npm publish --access public`.
    - The ESLint plugin is exported at the `./eslint-plugin` subpath — no separate package needed.
 
-→ After this, teams can `uses: <owner>/agentguard@v0` in CI, `npx agentguard ./src` from the terminal, and `import agentguard from 'agentguard/eslint-plugin'` in their ESLint config. **This is the real signal start.**
+→ After this, teams can `uses: <owner>/agentguard@v0` in CI, `npx @allenwu06/agentguard ./src` from the terminal, and `import agentguard from '@allenwu06/agentguard/eslint-plugin'` in their ESLint config. **This is the real signal start.**
 
-### npm name availability note
+### npm name note
 
-The package is published as `agentguard`. Verify availability at <https://www.npmjs.com/package/agentguard> before publishing. If taken, fall back to a scoped name: update `"name"` in package.json to `"@<owner>/agentguard"` and `npm publish --access public` — then users run `npx @<owner>/agentguard`.
+The package is published as `@allenwu06/agentguard` (npm scope = npm username allenwu06; reason: npm name-similarity policy blocks the bare name `agentguard`). Registry URL: <https://www.npmjs.com/package/@allenwu06/agentguard>.
 
 ## Gate 2 — payment account (only if/when monetizing; the revenue gate)
 

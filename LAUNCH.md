@@ -23,7 +23,7 @@ into a shell command, your filesystem, the network, or code execution. The
 single most effective defense is a railing on the way in: validate the input,
 check an allow/deny list, or require a human to confirm.
 
-npx agentguard ./src
+npx @allenwu06/agentguard ./src
 
 agentguard is a building inspector for those missing railings. It finds tool
 handlers in MCP, LangChain, Vercel AI SDK, LlamaIndex and similar frameworks;
@@ -85,7 +85,7 @@ numbers are claimed. The 76% figure in the README is from an external scan of
 - Replace `<owner>` and `[link]` placeholders with real values once the repo is public.
 - The 76% figure must be attributed to the cited Show HN scan (HN item 47947356);
   do not present it as a claim about agentguard's detection capability.
-- If published to npm before posting, substitute the real `npx agentguard` invocation.
+- If published to npm before posting, substitute the real `npx @allenwu06/agentguard` invocation.
 - Do not add precision/recall numbers or percentage-of-repos-with-findings claims —
   the README explicitly disclaims these.
 - A terminal screenshot of a real finding (AG001/AG002/etc.) from a fixture scan

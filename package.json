@@ -1,5 +1,5 @@
 {
-  "name": "agentguard",
+  "name": "@allenwu06/agentguard",
   "version": "0.1.0",
   "description": "Static AST linter that flags missing guards on AI-agent tool calls — unguarded shell/exec, filesystem, network, and dynamic-eval sinks with no input validation or allowlist. Conservative (low false positives). Ships as a CLI, an ESLint plugin, and a GitHub Action.",
   "type": "module",
